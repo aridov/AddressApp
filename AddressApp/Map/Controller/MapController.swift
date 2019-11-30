@@ -7,10 +7,29 @@
 //
 
 import UIKit
+import CoreLocation
 
 class MapController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        requestLocationServices()
     }
+    
+    fileprivate func requestLocationServices() {
+        LocationService.shared.startUpdatingLocation(delegate: self)
+    }
+}
+
+extension MapController: LocationServiceDelegate {
+    func didChangeLocation(_ location: CLLocation) {
+        print("Current Location: (\(location.coordinate.latitude), \(location.coordinate.latitude))")
+    }
+    
+    func didFailWithError(_ error: Error) {
+        print(error)
+    }
+    
+    
 }
