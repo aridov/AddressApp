@@ -46,21 +46,22 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     }
 }
 
-fileprivate extension LocationService {
+extension LocationService {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let newLocation = locations.last {
             if (currentLocation.distance(from: newLocation) > 0) {
                 currentLocation = newLocation
+                print(currentLocation.coordinate)
                 delegate?.didChangeLocation(currentLocation)
             }
         }
     }
     
-    fileprivate func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         delegate?.didFailWithError(error)
     }
     
-    fileprivate func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
             if (CLLocationManager.locationServicesEnabled()) {
                 locationManager.startUpdatingLocation()

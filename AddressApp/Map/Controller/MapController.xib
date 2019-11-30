@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapController" customModule="AddressApp" customModuleProvider="target">
             <connections>
+                <outlet property="addressLabel" destination="V5u-wd-Jqk" id="2OM-WL-Neb"/>
+                <outlet property="mapView" destination="Ghe-LD-wh5" id="63n-HI-auk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,13 +24,26 @@
             <subviews>
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ghe-LD-wh5">
                     <rect key="frame" x="0.0" y="44" width="414" height="718"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="KP1-sO-mG3"/>
+                    </connections>
                 </mapView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="V5u-wd-Jqk">
+                    <rect key="frame" x="20" y="777" width="374" height="55"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Ghe-LD-wh5" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="DmY-0M-Eju"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Ghe-LD-wh5" secondAttribute="bottom" constant="100" id="FS8-lV-0R5"/>
+                <constraint firstItem="V5u-wd-Jqk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="NuV-t1-Ln5"/>
+                <constraint firstItem="V5u-wd-Jqk" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Owm-Yg-uXu"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="V5u-wd-Jqk" secondAttribute="bottom" constant="30" id="Z0r-ev-W4f"/>
                 <constraint firstItem="Ghe-LD-wh5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="al4-ai-vgF"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Ghe-LD-wh5" secondAttribute="bottom" constant="100" id="b7m-6y-CLz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="V5u-wd-Jqk" secondAttribute="trailing" constant="20" id="bxs-cJ-bU6"/>
+                <constraint firstItem="V5u-wd-Jqk" firstAttribute="top" secondItem="Ghe-LD-wh5" secondAttribute="bottom" constant="15" id="ftT-pt-kir"/>
                 <constraint firstItem="Ghe-LD-wh5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="uuE-7r-ytY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ghe-LD-wh5" secondAttribute="trailing" id="zqg-Eq-8oT"/>
             </constraints>
