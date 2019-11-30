@@ -23,13 +23,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ghe-LD-wh5">
-                    <rect key="frame" x="0.0" y="44" width="414" height="718"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="698"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="KP1-sO-mG3"/>
                     </connections>
                 </mapView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="V5u-wd-Jqk">
-                    <rect key="frame" x="20" y="777" width="374" height="55"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5u-wd-Jqk">
+                    <rect key="frame" x="20" y="757" width="374" height="75"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -41,7 +41,7 @@
                 <constraint firstItem="V5u-wd-Jqk" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Owm-Yg-uXu"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="V5u-wd-Jqk" secondAttribute="bottom" constant="30" id="Z0r-ev-W4f"/>
                 <constraint firstItem="Ghe-LD-wh5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="al4-ai-vgF"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Ghe-LD-wh5" secondAttribute="bottom" constant="100" id="b7m-6y-CLz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Ghe-LD-wh5" secondAttribute="bottom" constant="120" id="b7m-6y-CLz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="V5u-wd-Jqk" secondAttribute="trailing" constant="20" id="bxs-cJ-bU6"/>
                 <constraint firstItem="V5u-wd-Jqk" firstAttribute="top" secondItem="Ghe-LD-wh5" secondAttribute="bottom" constant="15" id="ftT-pt-kir"/>
                 <constraint firstItem="Ghe-LD-wh5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="uuE-7r-ytY"/>

@@ -35,22 +35,34 @@ class MapController: UIViewController {
 
 extension MapController: LocationServiceDelegate {
     func didChangeLocation(_ location: CLLocation) {
+        updateMap(location)
+        updateLocationLabel(location)
+    }
+    
+    func didFailWithError(_ error: Error) {
+        print(error)
+    }
+    
+    func updateMap(_ location: CLLocation) {
         if (!didRequestLocation) {
             didRequestLocation = true
             mapView.addAnnotation(currentPoint)
         }
         
         let coordinate = location.coordinate
-        
         let coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: MapConstants.regionRadius, longitudinalMeters: MapConstants.regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
         
         currentPoint.coordinate = coordinate
-        
-        addressLabel.text = "Current Location:\n(\(location.coordinate.latitude), \(location.coordinate.longitude))"
     }
     
-    func didFailWithError(_ error: Error) {
-        print(error)
+    func updateLocationLabel(_ location: CLLocation) {
+        let postLocation = PostLocation(with: location)
+        NetworkService.shared.requestLocation(with: postLocation) { [weak self] (responseLocation) in
+            print(responseLocation)
+            
+            let address = responseLocation.address
+            self?.addressLabel.text = address.addressString()
+        }
     }
 }

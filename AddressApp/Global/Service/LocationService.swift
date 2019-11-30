@@ -9,13 +9,17 @@
 import Foundation
 import CoreLocation
 
+fileprivate struct LocationConstants {
+    static var minLocationChangedDistance: Double = 10.0
+}
+
 protocol LocationServiceDelegate {
     func didChangeLocation(_ location: CLLocation)
     func didFailWithError(_ error: Error)
 }
 
 class LocationService: NSObject, CLLocationManagerDelegate {
- 
+    
     static let shared = LocationService()
     let locationManager: CLLocationManager
     var currentLocation: CLLocation
@@ -49,9 +53,8 @@ class LocationService: NSObject, CLLocationManagerDelegate {
 extension LocationService {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let newLocation = locations.last {
-            if (currentLocation.distance(from: newLocation) > 0) {
+            if (currentLocation.distance(from: newLocation) > LocationConstants.minLocationChangedDistance) {
                 currentLocation = newLocation
-                print(currentLocation.coordinate)
                 delegate?.didChangeLocation(currentLocation)
             }
         }
