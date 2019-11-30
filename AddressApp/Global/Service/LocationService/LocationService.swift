@@ -44,8 +44,8 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         self.delegate = delegate
         if (CLLocationManager.locationServicesEnabled()) {
             locationManager.startUpdatingLocation()
-        } else{
-            //service disabled error
+        } else {
+            delegate.didFailWithError(LocationError.LocationServicesDisabled)
         }
     }
 }
@@ -61,7 +61,18 @@ extension LocationService {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        delegate?.didFailWithError(error)
+        var locationError = LocationError.OtherError
+        if let error = error as? CLError {
+            switch error {
+            case CLError.locationUnknown:
+                locationError = .LocationUnknown
+            case CLError.denied:
+                locationError = .Denied
+            default:
+                locationError = .OtherCLError
+            }
+        }
+        delegate?.didFailWithError(locationError)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

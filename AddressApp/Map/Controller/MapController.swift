@@ -40,7 +40,7 @@ extension MapController: LocationServiceDelegate {
     }
     
     func didFailWithError(_ error: Error) {
-        print(error)
+        //handle error
     }
     
     func updateMap(_ location: CLLocation) {
@@ -58,9 +58,12 @@ extension MapController: LocationServiceDelegate {
     
     func updateLocationLabel(_ location: CLLocation) {
         let postLocation = PostLocation(with: location)
-        NetworkService.shared.requestLocation(with: postLocation) { [weak self] (responseLocation) in
-            let address = responseLocation.address
-            self?.addressLabel.text = address.addressString()
+        NetworkService.shared.requestLocation(with: postLocation) { [weak self] (responseLocation, error) in
+            DispatchQueue.main.async {
+                guard let location = responseLocation else { return }
+                let address = location.address
+                self?.addressLabel.text = address.addressString()
+            }
         }
     }
 }
