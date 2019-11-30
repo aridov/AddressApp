@@ -30,5 +30,22 @@ class AddressAppTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
+    
+    func testLocationAddressString() {
+        let responseLocationAddress1 = Address(house_number: nil, road: "E95", city: nil, country: "United States")
+        let locationString1 = "Current Location:\nUnited States, E95"
+        XCTAssertEqual(locationString1, responseLocationAddress1.addressString())
+        
+        let responseLocationAddress2 = Address(house_number: nil, road: nil, city: "Buenos Aires", country: "Argentina")
+        let locationString2 = "Current Location:\nArgentina, Buenos Aires"
+        XCTAssertEqual(locationString2, responseLocationAddress2.addressString())
+        
+        let responseLocationAddress3 = Address(house_number: nil, road: nil, city: nil, country: "Antarctica")
+        let locationString3 = "Current Location:\nAntarctica"
+        XCTAssertEqual(locationString3, responseLocationAddress3.addressString())
+        
+        let responseLocationAddress4 = Address(house_number: "42", road: "Khreshatyk", city: "Kiev", country: "Ukraine")
+        let locationString4 = "Current Location:\nUkraine, Kiev, Khreshatyk, 42"
+        XCTAssertEqual(locationString4, responseLocationAddress4.addressString())
+    }
 }

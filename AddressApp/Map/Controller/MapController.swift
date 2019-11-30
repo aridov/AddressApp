@@ -59,8 +59,6 @@ extension MapController: LocationServiceDelegate {
     func updateLocationLabel(_ location: CLLocation) {
         let postLocation = PostLocation(with: location)
         NetworkService.shared.requestLocation(with: postLocation) { [weak self] (responseLocation) in
-            print(responseLocation)
-            
             let address = responseLocation.address
             self?.addressLabel.text = address.addressString()
         }
